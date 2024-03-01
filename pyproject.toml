@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "template-python"
+name = "twentyquestions-mtg"
 version = "0.0.1"
-description = "Template repo for Python."
-authors = ["Your Name <you@example.com>"]
+description = "Twenty questions style game for Magic: The Gathering cards."
+authors = ["Kevin Beussman <kevin.beussman@gmail.com>"]
 readme = "README.md"
-packages = [{include = "template-python", from = "src"}]
+packages = [{include = "twentyquestions-mtg", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
