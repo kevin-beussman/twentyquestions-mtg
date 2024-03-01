@@ -8,6 +8,7 @@ packages = [{include = "twentyquestions-mtg", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
+ipykernel = "^6.29.3"
 
 [tool.poetry.group.dev.dependencies]
 autoflake = "^2.2.1"

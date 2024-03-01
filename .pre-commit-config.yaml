@@ -39,7 +39,6 @@ repos:
       - id: pylint
         name: Pylint
         entry: poetry run pylint --enable useless-suppression
-        always_run: true
         pass_filenames: true
         language: system
         types_or: [
@@ -58,3 +57,4 @@ repos:
       #   pass_filenames: false
       #   language: system
       #   verbose: true
+exclude: 'exploratory/.*'
