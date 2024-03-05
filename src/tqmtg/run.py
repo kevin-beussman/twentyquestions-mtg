@@ -21,7 +21,7 @@ def main() -> int:
         toughness: str | None = None
         keywords: list[str] | None = None
         type_line: str | None = None
-        # oracle_text: str | None = None
+        oracle_text: str | None = None
         # legalities: dict[str, str] | None = None
 
     with open("data/oracle-cards-20240301220151.json", "rb") as json_file:
@@ -29,6 +29,32 @@ def main() -> int:
 
     df = pandas.DataFrame([msgspec.structs.asdict(card) for card in dataset])
     features = df[["name"]].copy()
+
+    # Oracle text
+    df["oracle_text_no_reminder"] = (
+        df["oracle_text"]
+        .str.replace(r"[\(].*?[\)]", "", regex=True)
+        .str.lower()
+    )
+    cares = [
+        "creature",
+        "token",
+        "instant",
+        "sorcery",
+        "legend",
+        "land",
+        "artifact",
+        "enchantment",
+        "damage",
+        "prevent",
+        "dies",
+        "destroy",
+        "life",
+    ]
+    for care in cares:
+        features[f"oracle_cares_{care}"] = df[
+            "oracle_text_no_reminder"
+        ].str.contains(care)
 
     # Numerical (cmc, power, toughness)
     def is_float(s: str):
